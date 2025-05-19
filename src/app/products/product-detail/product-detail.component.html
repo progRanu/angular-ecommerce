@@ -1,0 +1,19 @@
+<div class="product-detail" *ngIf="product">
+  <div class="product-image">
+    <img [src]="product.images[0]" alt="{{ product.title }}" />
+  </div>
+  <div class="product-info">
+    <h2>{{ product.title }}</h2>
+    <p class="price">₹{{ product.price }}</p>
+    <p class="description">{{ product.description }}</p>
+
+    <form [formGroup]="variantForm" class="variant-form">
+      <label for="size">Size:</label>
+      <select formControlName="size">
+        <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+      </select>
+    </form>
+
+    <button (click)="addToCart()">Add to Cart</button>
+  </div>
+</div>
