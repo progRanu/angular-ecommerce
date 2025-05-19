@@ -6,8 +6,8 @@
   height: 100vh;
 }
 .spinner {
-  width: 350px;
-  height: 350px;
+  width: 250px;
+  height: 250px;
   border: 15px solid #ccc;
   border-top-color: #2c7a7b;
   border-radius: 50%;

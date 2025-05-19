@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../../cart/cart.service';
 import { CommonModule } from '@angular/common';
 import { Product } from '../product.model';
 import { ProductServiceTsService } from '../product.service.ts.service';
@@ -21,7 +22,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductServiceTsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+     private cartService: CartService,
   ) {}
 
   ngOnInit(): void {
@@ -38,10 +40,13 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart() {
-    console.log('Add to cart:', {
-      productId: this.product.id,
-      selectedSize: this.variantForm.value.size
-    });
-    // Call cartService.addToCart(...) here
+  this.cartService.addToCart({
+    product: this.product,
+    quantity: 1,
+    selectedSize: this.variantForm.value.size
+  });
+
+  alert('Product added to cart!');
+
   }
 }
