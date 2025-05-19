@@ -1,8 +1,28 @@
-
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  height: 100vh;
+}
+.spinner {
+  width: 350px;
+  height: 350px;
+  border: 15px solid #ccc;
+  border-top-color: #2c7a7b;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  align-content: center;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .product-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap:2.5rem;
+  gap: 2.5rem;
   padding: 1rem;
 
   @media (min-width: 640px) {
@@ -27,7 +47,7 @@
   flex-direction: column;
   justify-content: flex-start;
   height: 100%;
-  cursor: pointer; 
+  cursor: pointer;
   margin-bottom: 0.5rem;
   border: 1px solid #e0e0e0;
   border-radius: 12px;

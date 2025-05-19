@@ -1,4 +1,11 @@
-<div class="filters">
+
+
+<div *ngIf="isLoading" class="loader-container">
+  <div class="spinner"></div>
+</div>
+
+
+<div class="filters" *ngIf="!isLoading">
   <label>Sort by price:</label>
   <select [(ngModel)]="sortBy" (change)="sortProducts()">
     <option value="">None</option>
@@ -7,7 +14,7 @@
   </select>
 </div>
 
-<div class="product-grid">
+<div class="product-grid" *ngIf="!isLoading">
   @for (product of filteredProducts; track product.id) {
     <div class="product-card" (click)="goToProduct(product?.id)">
       <img [src]="product?.images?.[0]" alt="{{ product?.title }}" />

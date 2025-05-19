@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements OnInit {
+  isLoading = true;
   products: Product[] = [];
   filteredProducts: Product[] = [];
   sortBy: string = '';
@@ -22,8 +23,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.productService.getAllProducts().subscribe((data) => {
+      this.isLoading = true;
       this.products = data;
       this.filteredProducts = data;
+       this.isLoading = false;
     });
   }
 
