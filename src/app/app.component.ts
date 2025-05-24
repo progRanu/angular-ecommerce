@@ -1,12 +1,21 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+
 import { RouterOutlet } from '@angular/router';
+import { ToastComponent } from './shared/toast/toast.component';
+import { ToastService } from './shared/toast/toast.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,ToastComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  @ViewChild('globalToast') toastComponent!: ToastComponent;
+  constructor(private toastService: ToastService) {}
+
+  ngAfterViewInit() {
+    this.toastService.register(this.toastComponent);
+  }
   title = 'angular-ecommerce';
 }

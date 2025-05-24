@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
@@ -6,15 +6,17 @@ import { CartService } from '../../cart/cart.service';
 import { CommonModule } from '@angular/common';
 import { Product } from '../product.model';
 import { ProductServiceTsService } from '../product.service.ts.service';
+import { ToastComponent } from '../../shared/toast/toast.component';
 
 @Component({
    standalone: true,
   selector: 'app-product-detail',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,ToastComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent implements OnInit {
+  @ViewChild('toast') toast!: ToastComponent;
   product!: Product;
   sizes = ['S', 'M', 'L', 'XL'];
   variantForm!: FormGroup;
@@ -46,7 +48,8 @@ export class ProductDetailComponent implements OnInit {
     selectedSize: this.variantForm.value.size
   });
 
-  alert('Product added to cart!');
+  this.toast.show('✅ Item added to cart!');
+
 
   }
 }
