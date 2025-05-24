@@ -81,3 +81,17 @@
     color: #2c7a7b;
   }
 }
+
+nav{
+  display: flex;
+  justify-content: space-around;
+
+  .totalProduct,.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    /* margin: 1rem auto;        */
+  }
+
+}

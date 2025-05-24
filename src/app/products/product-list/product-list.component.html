@@ -1,26 +1,29 @@
-
-
 <div *ngIf="isLoading" class="loader-container">
   <div class="spinner"></div>
 </div>
 
+<nav class="nav">
+  <div class="filters" *ngIf="!isLoading">
+    <label>Sort by price:</label>
+    <select [(ngModel)]="sortBy" (change)="sortProducts()">
+      <option value="">Select</option>
+      <option value="low">Low to High</option>
+      <option value="high">High to Low</option>
+    </select>
+  </div>
 
-<div class="filters" *ngIf="!isLoading">
-  <label>Sort by price:</label>
-  <select [(ngModel)]="sortBy" (change)="sortProducts()">
-    <option value="">None</option>
-    <option value="low">Low to High</option>
-    <option value="high">High to Low</option>
-  </select>
-</div>
+  <div class="totalProduct">
+    <label for="totalCount">Total Products:</label>
+    <p id="totalCount">{{ products.length }}</p>
+  </div>
+</nav>
 
 <div class="product-grid" *ngIf="!isLoading">
   @for (product of filteredProducts; track product.id) {
-    <div class="product-card" (click)="goToProduct(product?.id)">
-      <img [src]="product?.images?.[0]" alt="{{ product?.title }}" />
-      <h3>{{ product?.title }}</h3>
-      <p>₹{{ product?.price }}</p>
-    </div>
+  <div class="product-card" (click)="goToProduct(product?.id)">
+    <img [src]="product?.images?.[0]" alt="{{ product?.title }}" />
+    <h3>{{ product?.title }}</h3>
+    <p>₹{{ product?.price }}</p>
+  </div>
   }
 </div>
-
