@@ -1,1 +1,22 @@
-<p>cart works!</p>
+<div class="cart">
+  <h3>Your Cart</h3>
+  <div *ngIf="(cartItems$ | async)?.length; else empty">
+    <div *ngFor="let item of cartItems$ | async" class="cart-item">
+      <span>{{ item.product.title }}</span>
+      <span>
+        <button (click)="updateQuantity(item, -1)">-</button>
+        {{ item.quantity }}
+        <button (click)="updateQuantity(item, 1)">+</button>
+      </span>
+      <span>₹{{ item.product.price * item.quantity }}</span>
+      <button (click)="removeItem(item)">Remove</button>
+    </div>
+    <hr />
+    <ng-container *ngIf="cartItems$ | async as items">
+      <strong>Total: ₹{{ getTotal(items) }}</strong>
+    </ng-container>
+  </div>
+  <ng-template #empty>
+    <p>Your cart is empty.</p>
+  </ng-template>
+</div>

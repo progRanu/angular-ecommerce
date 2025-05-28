@@ -12,6 +12,17 @@
       <select formControlName="size">
         <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
       </select>
+      <div class="color-group">
+    <label>Select Colors:</label>
+    <div *ngFor="let color of colors">
+      <input
+        type="checkbox"
+        [value]="color"
+        (change)="onColorToggle($event)"
+      />
+      {{ color }}
+    </div>
+  </div>
     </form>
 
     <button (click)="addToCart()">Add to Cart</button>

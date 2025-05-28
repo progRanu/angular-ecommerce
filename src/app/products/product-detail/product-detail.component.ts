@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../../cart/cart.service';
+import { CartService } from '../../components/cart/cart.service';
 import { CommonModule } from '@angular/common';
 import { Product } from '../product.model';
 import { ProductServiceTsService } from '../product.service.ts.service';
@@ -19,6 +19,7 @@ export class ProductDetailComponent implements OnInit {
   @ViewChild('toast') toast!: ToastComponent;
   product!: Product;
   sizes = ['S', 'M', 'L', 'XL'];
+  colors = ['Red', 'Blue', 'Black'];
   variantForm!: FormGroup;
 
   constructor(
@@ -37,9 +38,24 @@ export class ProductDetailComponent implements OnInit {
     }
 
     this.variantForm = this.fb.group({
-      size: ['M']
+      size: ['M'],
+       colors: this.fb.array([])
     });
   }
+  onColorToggle(event: Event) {
+  const input = event.target as HTMLInputElement;
+  const color = input.value;
+  const checked = input.checked;
+
+  const colorArray = this.variantForm.get('colors') as FormArray;
+
+  if (checked) {
+    colorArray.push(this.fb.control(color));
+  } else {
+    const index = colorArray.controls.findIndex(ctrl => ctrl.value === color);
+    if (index >= 0) colorArray.removeAt(index);
+  }
+}
 
   addToCart() {
   this.cartService.addToCart({
@@ -47,7 +63,6 @@ export class ProductDetailComponent implements OnInit {
     quantity: 1,
     selectedSize: this.variantForm.value.size
   });
-
   this.toast.show('✅ Item added to cart!');
 
 
