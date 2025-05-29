@@ -1,22 +1,32 @@
-<div class="cart">
-  <h3>Your Cart</h3>
-  <div *ngIf="(cartItems$ | async)?.length; else empty">
-    <div *ngFor="let item of cartItems$ | async" class="cart-item">
-      <span>{{ item.product.title }}</span>
-      <span>
-        <button (click)="updateQuantity(item, -1)">-</button>
-        {{ item.quantity }}
-        <button (click)="updateQuantity(item, 1)">+</button>
-      </span>
-      <span>₹{{ item.product.price * item.quantity }}</span>
-      <button (click)="removeItem(item)">Remove</button>
+<div class="cart-wrapper">
+  <div class="cart">
+    <h3>Your Cart</h3>
+    <div *ngIf="(cartItems$ | async)?.length; else empty">
+      <div *ngFor="let item of cartItems$ | async" class="cart-item">
+        <img [src]="item.product.images[0]" alt="{{ item.product.title }}" class="cart-thumb" />
+        <span>{{ item.product.title }}</span>
+
+        <span class="quantity-controls">
+          <button class="decrease-btn" (click)="updateQuantity(item, -1)">
+            -
+          </button>
+          {{ item.quantity }}
+          <button class="increase-btn" (click)="updateQuantity(item, 1)">
+            +
+          </button>
+        </span>
+
+        <span>₹{{ item.product.price * item.quantity }}</span>
+        <button class="remove-btn" (click)="removeItem(item)">Remove</button>
+      </div>
+
+      <hr />
+      <ng-container *ngIf="cartItems$ | async as items">
+        <strong class="cart-total">Total: ₹{{ getTotal(items) }}</strong>
+      </ng-container>
     </div>
-    <hr />
-    <ng-container *ngIf="cartItems$ | async as items">
-      <strong>Total: ₹{{ getTotal(items) }}</strong>
-    </ng-container>
+    <ng-template #empty>
+      <p>Your cart is empty.</p>
+    </ng-template>
   </div>
-  <ng-template #empty>
-    <p>Your cart is empty.</p>
-  </ng-template>
 </div>
