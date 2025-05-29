@@ -57,3 +57,30 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+## Features
+🛒 Product listing with images, pricing, and filtering
+
+🎨 Variant selection (size, color) via Reactive Forms
+
+🔁 Add to cart, quantity updates, and remove items
+
+💾 Persistent cart state using localStorage
+
+🚀 Built with standalone components, Angular best practices, and clean CSS Grid layout
+
+📦 Custom toast notifications and modern UI feedback
+
+🔍 Modular architecture, scalable for real APIs
+
+## Tech Stack
+Angular 17+ (with standalone components)
+
+RxJS with BehaviorSubject for state sharing
+
+SCSS & CSS Grid/Flexbox layout
+
+TypeScript (strict mode)
+
+Optional: ngx-toastr, Angular Material (optional components)
