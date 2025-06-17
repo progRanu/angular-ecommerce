@@ -20,4 +20,6 @@ showCart: boolean = false;
   reloadPage(){
     this.router.navigate(['']);
   }
+
+  goBack(){}
 }

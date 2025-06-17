@@ -67,6 +67,9 @@
     max-height: 160px;
     object-fit: contain;
     margin-bottom: 0.75rem;
+     width: 100%;
+    column-width: 200px;
+    gap: 1em;
   }
 
   h3 {
