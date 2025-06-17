@@ -1,9 +1,12 @@
 <header class="header">
   <div class="container">
-    <h1 class="logo">Shop</h1>
-    <button class="cart-button" (click)="toggleCart()">
-      🛒 Cart
-    </button>
+    <!-- <nav>
+
+    </nav> -->
+    <h1 class="logo">
+      <a routerLink="/" (click)="reloadPage()">Shop</a>
+    </h1>
+    <button class="cart-button" (click)="toggleCart()">🛒 Cart</button>
   </div>
   <!-- <app-cart *ngIf="showCart"></app-cart> -->
 </header>

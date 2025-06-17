@@ -16,4 +16,8 @@ showCart: boolean = false;
     //this.showCart = !this.showCart;
       this.router.navigate(['/cart']);
   }
+
+  reloadPage(){
+    this.router.navigate(['']);
+  }
 }
