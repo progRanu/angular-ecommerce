@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +10,9 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(private router: Router){}
+  constructor(private router: Router,
+    private location: Location
+  ){}
 showCart: boolean = false;
 
   toggleCart() {
@@ -21,5 +24,7 @@ showCart: boolean = false;
     this.router.navigate(['']);
   }
 
-  goBack(){}
+  backToHome(){
+    this.location.back();
+  }
 }

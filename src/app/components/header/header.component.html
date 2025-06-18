@@ -1,9 +1,12 @@
 <header class="header">
-    <nav>
-      <h1 class="logo">
-        <a routerLink="/" (click)="reloadPage()">Shop</a>
-      </h1>
+  <nav>
+    <h1 class="logo">
+      <a routerLink="/" (click)="reloadPage()">Shop</a>
+    </h1>
+    <section class="right-section">
       <button class="cart-button" (click)="toggleCart()">🛒 Cart</button>
-    </nav>
+      <button class="cart-button" (click)="backToHome()">Back</button>
+    </section>
+  </nav>
   <!-- <app-cart *ngIf="showCart"></app-cart> -->
 </header>
